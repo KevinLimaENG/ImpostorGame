@@ -1,4 +1,4 @@
-/* Estilos Gerais (a maioria permanece igual) */
+/* Estilos Gerais */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f8ff;
@@ -26,10 +26,9 @@ body {
 h1, h2 {
     color: #0056b3;
 }
-.form-group, button {
+.form-group {
     margin-bottom: 20px;
 }
-/* ... (outros estilos de formulário e botão permanecem iguais) ... */
 button {
     background-color: #007bff;
     color: white;
@@ -39,6 +38,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s, opacity 0.3s;
+    margin-top: 10px;
 }
 button:hover:not(:disabled) {
     background-color: #0056b3;
@@ -126,15 +126,6 @@ button:disabled {
     margin: 10px 0;
     text-align: left;
 }
-
-/* --- Estilos da Tela de Resultado --- */
-#resultadoFinal p, #impostoresRevelados p {
-    font-size: 1.2em;
-    margin: 10px 0;
-    text-align: left;
-}
-
-/* NOVO ESTILO PARA O GRUPO DE BOTÕES */
 .button-group {
     display: flex;
     justify-content: center;

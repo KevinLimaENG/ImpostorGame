@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Jogo do Impostor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="telaSetup" class="tela ativa">
+        <h1>Jogo do Impostor</h1>
+        <div class="form-group">
+            <label for="palavraEscolhida">Palavra Secreta:</label>
+            <input type="text" id="palavraEscolhida" value="Cinema">
+        </div>
+        <div class="form-group">
+            <label for="numImpostores">Número de Impostores:</label>
+            <input type="number" id="numImpostores" min="1" value="1">
+        </div>
+        <div class="form-group">
+            <label>Nomes dos Jogadores (um por linha):</label>
+            <textarea id="nomesJogadores" rows="6" placeholder="Ana&#10;Beto&#10;Carla&#10;Daniel"></textarea>
+        </div>
+        <button id="btnIniciarJogo">Iniciar Jogo</button>
+    </div>
+
+    <div id="telaJogo" class="tela">
+        <h2>Revele seu Papel!</h2>
+        <p>Clique no seu balão para ver seu papel. Clique novamente para esconder.</p>
+        <div id="containerBaloes"></div>
+        <button id="btnIrParaVotacao">Iniciar Votação</button>
+    </div>
+    
+    <div id="telaVotacao" class="tela">
+        <h2 id="tituloVotacao">Hora de Votar!</h2>
+        <p id="instrucaoVotacao">Selecione em quem você quer votar.</p>
+        <div id="containerVotacao"></div>
+        <button id="btnConfirmarVoto">Confirmar Voto</button>
+    </div>
+
+    <div id="telaResultado" class="tela">
+        <h2>Resultado da Votação</h2>
+        <div id="resultadoFinal"></div>
+        <p><strong>Os impostores eram:</strong></p>
+        <div id="impostoresRevelados"></div>
+        
+        <div class="button-group">
+            <button id="btnVotarNovamente">Votar Novamente</button>
+            <button id="btnJogarNovamente">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnIniciarJogo = document.getElementById('btnIniciarJogo');
     const btnIrParaVotacao = document.getElementById('btnIrParaVotacao');
     const btnConfirmarVoto = document.getElementById('btnConfirmarVoto');
+    const btnMostrarVotacao = document.getElementById('btnMostrarVotacao'); // BOTÃO DA NOVA TELA
     const btnJogarNovamente = document.getElementById('btnJogarNovamente');
-    const btnVotarNovamente = document.getElementById('btnVotarNovamente'); // NOVO BOTÃO
+    const btnVotarNovamente = document.getElementById('btnVotarNovamente');
 
-    // ... (outros seletores de elementos permanecem iguais)
     const containerBaloes = document.getElementById('containerBaloes');
     const containerVotacao = document.getElementById('containerVotacao');
     const tituloVotacao = document.getElementById('tituloVotacao');
@@ -27,17 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(idTela).classList.add('ativa');
     }
 
-    // --- LÓGICA DO JOGO (as funções iniciarJogo e criarBalao não mudam) ---
+    // --- LÓGICA DO JOGO ---
     function iniciarJogo() {
-        // ... (código igual ao anterior)
         const nomesInput = document.getElementById('nomesJogadores').value.trim().split('\n');
         const palavra = document.getElementById('palavraEscolhida').value;
         const numImpostores = parseInt(document.getElementById('numImpostores').value);
-
         const nomesFiltrados = nomesInput.filter(nome => nome.trim() !== '');
 
-        if (nomesFiltrados.length < 3 || numImpostores >= nomesFiltrados.length || palavra.trim() === '') {
-            alert('Configurações inválidas! Verifique o número de jogadores, impostores e a palavra secreta.');
+        if (nomesFiltrados.length < 3 || numImpostores >= nomesFiltrados.length || palavra.trim() === '' || numImpostores < 1) {
+            alert('Configurações inválidas! Verifique o número de jogadores (mínimo 3), impostores e a palavra secreta.');
             return;
         }
 
@@ -64,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function criarBalao(jogador) {
-        // ... (código igual ao anterior)
         const balao = document.createElement('div');
         balao.classList.add('balao');
 
@@ -86,16 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
         containerBaloes.appendChild(balao);
     }
     
-    // --- LÓGICA DE VOTAÇÃO (as funções iniciarRodadaDeVotacao, apresentarTelaDeVoto, processarVoto e mostrarResultados não mudam) ---
+    // --- LÓGICA DE VOTAÇÃO ---
     function iniciarRodadaDeVotacao() {
-        // ... (código igual ao anterior)
         indiceVotanteAtual = 0;
         apresentarTelaDeVoto();
         mudarTela('telaVotacao');
     }
 
     function apresentarTelaDeVoto() {
-        // ... (código igual ao anterior)
         const votanteAtual = jogadores[indiceVotanteAtual];
         tituloVotacao.innerHTML = `Vez de <span class="votante-atual">${votanteAtual.nome}</span> votar!`;
         containerVotacao.innerHTML = '';
@@ -117,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function processarVoto() {
-        // ... (código igual ao anterior)
         const votoSelecionado = containerVotacao.querySelector('.opcao-voto.selecionado');
         if (!votoSelecionado) {
             alert('Por favor, selecione um jogador para votar.');
@@ -132,12 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (indiceVotanteAtual < jogadores.length) {
             apresentarTelaDeVoto();
         } else {
-            mostrarResultados();
+            // Todos votaram, então mostra a tela de suspense
+            mudarTela('telaPreResultado');
         }
     }
 
     function mostrarResultados() {
-        // ... (código igual ao anterior)
         resultadoFinalDiv.innerHTML = '';
         impostoresReveladosDiv.innerHTML = '';
 
@@ -155,19 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mudarTela('telaResultado');
     }
 
-    // NOVA FUNÇÃO PARA VOTAR NOVAMENTE
     function revotar() {
-        // 1. Zera a contagem de votos de todos os jogadores
         Object.keys(votos).forEach(nome => {
             votos[nome] = 0;
         });
-
-        // 2. Inicia a rodada de votação do zero
         iniciarRodadaDeVotacao();
     }
     
     function resetarJogo() {
-        // ... (código igual ao anterior)
         document.getElementById('palavraEscolhida').value = 'Cinema';
         document.getElementById('numImpostores').value = 1;
         document.getElementById('nomesJogadores').value = '';
@@ -178,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnIniciarJogo.addEventListener('click', iniciarJogo);
     btnIrParaVotacao.addEventListener('click', iniciarRodadaDeVotacao);
     btnConfirmarVoto.addEventListener('click', processarVoto);
+    btnMostrarVotacao.addEventListener('click', mostrarResultados); // NOVO EVENTO
     btnJogarNovamente.addEventListener('click', resetarJogo);
-    btnVotarNovamente.addEventListener('click', revotar); // NOVO EVENTO
+    btnVotarNovamente.addEventListener('click', revotar);
 });

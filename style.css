@@ -1,0 +1,143 @@
+/* Estilos Gerais (a maioria permanece igual) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+    padding: 20px;
+}
+.tela {
+    display: none;
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+}
+.tela.ativa {
+    display: block;
+}
+h1, h2 {
+    color: #0056b3;
+}
+.form-group, button {
+    margin-bottom: 20px;
+}
+/* ... (outros estilos de formulário e botão permanecem iguais) ... */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+button:disabled {
+    background-color: #a0cfff;
+    cursor: not-allowed;
+}
+
+/* --- Estilos da Tela do Jogo (Balões) --- */
+#containerBaloes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px 0;
+}
+.balao {
+    width: 150px;
+    height: 150px;
+    background-color: #4caf50; /* Cor única para consistência */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none; /* Impede seleção de texto ao clicar */
+}
+.balao:hover {
+    transform: scale(1.1);
+}
+.nome-jogador-balao {
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    transition: opacity 0.3s;
+}
+.conteudo-balao {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    display: none; /* Começa escondido */
+}
+.balao.revelado .conteudo-balao {
+    display: block; /* Mostra o papel */
+}
+.balao.revelado .nome-jogador-balao {
+    display: none; /* Esconde o nome para dar espaço ao papel */
+}
+
+/* --- Estilos da Tela de Votação --- */
+#tituloVotacao .votante-atual {
+    color: #dc3545; /* Cor de destaque para o nome do votante */
+}
+#containerVotacao {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+.opcao-voto {
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.opcao-voto:hover {
+    background-color: #e9ecef;
+}
+.opcao-voto.selecionado {
+    background-color: #007bff;
+    border-color: #0056b3;
+    color: white;
+    font-weight: bold;
+}
+
+/* --- Estilos da Tela de Resultado --- */
+#resultadoFinal p, #impostoresRevelados p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* --- Estilos da Tela de Resultado --- */
+#resultadoFinal p, #impostoresRevelados p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* NOVO ESTILO PARA O GRUPO DE BOTÕES */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre os botões */
+    margin-top: 30px;
+}
